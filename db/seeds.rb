@@ -15,3 +15,13 @@ User.create(:voornaam => 'Stefan',
             :achternaam => 'Segers',
             :email => 'stefan.segers@khlim.be',
             :paswoord => 'treintrambus')
+
+Docent.delete_all
+Docent.create(:voornaam => 'Jan',
+               :achternaam => 'Jansens')
+Docent.create(:voornaam => 'Jef',
+               :achternaam => 'Martens')               
+Docent.create(:voornaam => 'Joris',
+               :achternaam => 'Heselmans')
+Docent.create(:voornaam => 'Pieter',
+               :achternaam => 'Severijns')      
