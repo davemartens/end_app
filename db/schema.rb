@@ -12,7 +12,4 @@
 
 ActiveRecord::Schema.define(:version => 20101215085046) do
 
-# Could not dump table "users" because of following ArgumentError
-#   invalid date
-
 end
