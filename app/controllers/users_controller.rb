@@ -1,6 +1,35 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
+
+
+def validatie		
+		@user = User.new(params[:userform])
+        
+		valid_user = User.find(:first,:conditions => ["achternaam= ? and paswoord = ?",@user.achternaam, @user.paswoord])
+		if valid_user
+       
+			session[:user_id]=valid_user.achternaam
+			session[:voornaam]=valid_user.voornaam
+        
+
+			redirect_to :action => 'private'
+		else
+			flash[:notice] = "Invalid User/Password"
+			redirect_to :action=> 'login'
+		end
+end
+  def login
+  end
+
+
+def logout
+ if session[:user_id]
+  reset_session
+  redirect_to :action=> 'login'
+ end
+end
+
   def index
     @users = User.all
 
@@ -10,16 +39,36 @@ class UsersController < ApplicationController
     end
   end
 
+  def private
+    @courses = Course.all
+
+    respond_to do |format|
+      format.html # private.html.erb
+      format.xml  { render :xml => @courses }
+    end
+  end
+
   # GET /users/1
   # GET /users/1.xml
+
+
+
+
   def show
     @user = User.find(params[:id])
+    @courses = Course.all
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
     end
+
+
+
   end
+
+
+
 
   # GET /users/new
   # GET /users/new.xml

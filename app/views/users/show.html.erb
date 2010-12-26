@@ -14,12 +14,23 @@
   <b>Email:</b>
   <%= @user.email %>
 </p>
-
+<%if session[:user_id] %>
 <p>
   <b>Paswoord:</b>
   <%= @user.paswoord %>
 </p>
-
-
+<%end%>
+<p>
+  <b>Vakken van de docent:</b><br/>
+  <% @courses.each do |course| %>
+<%if @user.achternaam == course.docent %>
+    <%= course.vak %><br/>
+<% end %>
+<% end %>
+</p>
+<%if session[:user_id] %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', users_path %>
+
+

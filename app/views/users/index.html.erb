@@ -1,11 +1,20 @@
-<h1>Listing users</h1>
+<%if session[:user_id] %>
+
+Welkom <strong><%=session[:user_id]%> <%=session[:voornaam]%></strong>.
+
+<%= link_to "logout",:controller => "users", :action => "logout" %><br/><br/>
+<% end %>
+
+<h1>Lijst van docenten</h1>
 
 <table>
   <tr>
     <th>Voornaam</th>
     <th>Achternaam</th>
     <th>Email</th>
+<%if session[:user_id] %>
     <th>Paswoord</th>
+<% end %>
     <th></th>
     <th></th>
     <th></th>
@@ -16,14 +25,19 @@
     <td><%= user.voornaam %></td>
     <td><%= user.achternaam %></td>
     <td><%= user.email %></td>
+<%if session[:user_id] %>
     <td><%= user.paswoord %></td>
+<%end%>
     <td><%= link_to 'Show', user %></td>
+<%if session[:user_id] %>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+<% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
+<%if session[:user_id] %>
 <%= link_to 'New User', new_user_path %>
+<%end%>
