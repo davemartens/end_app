@@ -1,0 +1,12 @@
+<%if session[:user_id] %>
+<h1>Editing student</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @student %> |
+<%= link_to 'Back', students_path %>
+
+<% else %>
+U hebt niet de rechten om deze pagina te bekijken
+
+<% end %>

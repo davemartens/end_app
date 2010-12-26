@@ -1,0 +1,23 @@
+<%if session[:user_id] %>
+
+Welkom <strong><%=session[:user_id]%> <%=session[:voornaam]%></strong>.
+
+<%= link_to "logout",:controller => "users", :action => "logout" %>
+<br/><br/>
+<h2>Dit zijn uw links</h2><br/>
+<%= link_to "docenten",:controller => "users" %><br/>
+<%= link_to "studenten",:controller => "students" %><br/>
+<%= link_to "vakken",:controller => "courses" %><br/><br/>
+<h2>Dit zijn uw vakken</h2>
+
+<% @courses.each do |course| %>
+<%if session[:user_id]==course.docent %>
+    <%= course.vak %><br/>
+<% end %>
+<% end %>
+
+
+<%else%>
+Gelieve u in te loggen om deze pagina te kunnen zien.<br/>
+<a href="login">Klik hier om u te kunnen inloggen</a><br/>
+<%end%>

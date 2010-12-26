@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Voornaam:</b>
+  <%= @student.voornaam %>
+</p>
+
+<p>
+  <b>Achternaam:</b>
+  <%= @student.achternaam %>
+</p>
+
+<%if session[:user_id] %>
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<% end %>
+<%= link_to 'Back', students_path %>

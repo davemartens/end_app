@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Vak:</b>
+  <%= @course.vak %>
+</p>
+
+<p>
+  <b>Docent:</b>
+  <%= @course.docent %>
+<% @users.each do |user| %>
+<%if @course.docent==user.achternaam %>
+    <%= user.voornaam %>
+<% end %>
+<% end %>
+</p>
+
+
+<%if session[:user_id] %>
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<% end %>
+<%= link_to 'Back', courses_path %>

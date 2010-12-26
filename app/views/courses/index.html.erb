@@ -1,0 +1,36 @@
+<%if session[:user_id] %>
+
+Welkom <strong><%=session[:user_id]%> <%=session[:voornaam]%></strong>.
+
+<%= link_to "logout",:controller => "users", :action => "logout" %><br/><br/>
+<% end %>
+
+
+<h1>Lijst van cursussen</h1>
+
+<table>
+  <tr>
+    <th>Docent</th>
+    <th>Vak</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @courses.each do |course| %>
+  <tr>
+    <td><%= course.docent %></td>
+    <td><%= course.vak %></td>
+    <td><%= link_to 'Show', course %></td>
+<%if session[:user_id] %>
+    <td><%= link_to 'Edit', edit_course_path(course) %></td>
+    <td><%= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete %></td>
+<%end%>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%if session[:user_id] %>
+<%= link_to 'New Course', new_course_path %>
+<%end%>
